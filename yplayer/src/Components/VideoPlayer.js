@@ -1,26 +1,21 @@
-import { FirstPage, YoutubeHeader } from "./style";
+import { FirstPage } from "./style";
 import Form from "./Form";
-import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import List from "./List";
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 export const AppContext = createContext();
 
-function VideoPlayer() {
-  const [isFetch, setIsFetch] = useState(false);
-
+function VideoPlayer({ children }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchText = searchParams.get("q");
 
+  const [status, setStatus] = useState();
+  const [count, setCount] = useState();
+
   return (
     <div>
-      <embed
-        src="Images/backgroundimage.jpg"
-        style={{ width: "100%", height: "750px" }}
-      />
-      <YoutubeHeader>YoutubeSearcher22</YoutubeHeader>
-      <AppContext.Provider value={{ isFetch, setIsFetch }}>
+      <AppContext.Provider value={{ status, setStatus, count, setCount }}>
         <FirstPage>
           <Form
             onSearch={(text) => {
@@ -28,6 +23,7 @@ function VideoPlayer() {
               setSearchParams({ q: text });
             }}
           />
+          {children}
           {searchText && <List search={searchText} />}
         </FirstPage>
       </AppContext.Provider>

@@ -1,8 +1,8 @@
-import Youtube from "react-youtube";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
-import { Outlet } from "react-router-dom";
-import { Suspense } from "react";
+import { VideoFrame } from "./style";
+import { AppContext } from "./VideoPlayer";
+import { useContext } from "react";
 
 function VideoStream() {
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -13,12 +13,18 @@ function VideoStream() {
     fetcher
   );
 
+  const { setStatus } = useContext(AppContext);
+
   console.log(data);
   return (
     <div>
-      <iframe
-        src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
-      ></iframe>
+      <VideoFrame src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}>
+        {setStatus("active")}
+      </VideoFrame>
+      <p>{data.datePublished}</p>
+      <p>{data.description}</p>
+      <p>{data.duration}</p>
+      <p>{}</p>
     </div>
   );
 }

@@ -5,10 +5,11 @@ import { Outlet } from "react-router-dom";
 function App() {
   return (
     <div className="App">
-      <VideoPlayer />
-      <Suspense fallback={<p>Loading bundle...</p>}>
-        <Outlet />
-      </Suspense>
+      <VideoPlayer>
+        <Suspense fallback={<p>Loading bundle...</p>}>
+          <Outlet />
+        </Suspense>
+      </VideoPlayer>
     </div>
   );
 }
