@@ -9,6 +9,7 @@ import {
   VideoPublishedAt,
   VideoViews,
   TitleAndDurationContainer,
+  InnerDetails,
 } from "./style";
 import { AppContext } from "./VideoPlayer";
 // import "./List.css";
@@ -37,24 +38,39 @@ function List({ search }) {
               padding: "2px 0 0 10px ",
             }}
           >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-              }}
-            >
+            <InnerDetails className={status === "active" ? "column" : "row"}>
               <ListPreviewImages
                 className={status === "active" ? "smaller" : "bigger"}
                 src={video.snippet.thumbnails.default.url}
                 alt="videoPreview"
               />
-              <TitleAndDurationContainer></TitleAndDurationContainer>
-              <VideoTitle>{video.title}</VideoTitle>
-              <VideoDuration>{video.snippet.duration}</VideoDuration>
-            </div>
-
-            <VideoPublishedAt>{video.snippet.publishedAt}</VideoPublishedAt>
-            <VideoViews>{video.snippet.views}</VideoViews>
+              <TitleAndDurationContainer>
+                <VideoTitle
+                  className={status === "active" ? "columnTitle" : "rowTitle"}
+                >
+                  {video.title}
+                </VideoTitle>
+                <VideoDuration
+                  className={
+                    status === "active" ? "columnDuration" : "rowDuration"
+                  }
+                >
+                  {video.snippet.duration}
+                </VideoDuration>
+                <VideoPublishedAt
+                  className={
+                    status === "active" ? "columnPublishDate" : "rowPublishDate"
+                  }
+                >
+                  {video.snippet.publishedAt}
+                </VideoPublishedAt>
+                <VideoViews
+                  className={status === "active?" ? "columnViews" : "rowViews"}
+                >
+                  Views:{video.snippet.views}
+                </VideoViews>
+              </TitleAndDurationContainer>
+            </InnerDetails>
           </Link>
         </div>
       ))}

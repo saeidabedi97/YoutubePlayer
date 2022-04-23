@@ -26,8 +26,9 @@ export const ListPreviewImages = styled.img`
     height: 350px;
   }
   &.smaller {
-    width: 150px;
-    height: 150px;
+    width: 450px;
+    height: 250px;
+    margin-left: 30px;
   }
 `;
 
@@ -73,12 +74,75 @@ export const VideoFrame = styled.iframe`
 `;
 
 export const TitleAndDurationContainer = styled.div`
-display: flex
-gap:55px;
-
+  display: flex;
+  flex-direction: row;
 `;
 
-export const VideoTitle = styled.p``;
-export const VideoDuration = styled.p``;
-export const VideoViews = styled.p``;
-export const VideoPublishedAt = styled.p``;
+export const VideoTitle = styled.p`
+  &.rowTitle {
+    position: absolute;
+    padding: 0 0 0 10px;
+    font-size: 40px;
+    overflow: hidden;
+    width: 520px;
+  }
+  &.columnTitle {
+    postion: absolute;
+    font-size: 25px;
+    overflow: hidden;
+    width: 250px;
+    padding: 0 0 0 30px;
+  }
+`;
+export const VideoDuration = styled.p`
+  &.rowDuration {
+    position: absolute;
+    left: 1150px;
+    top: 37.5px;
+    font-size: 22.5px;
+  }
+
+  &.columnDuration {
+    position: absolute;
+    left: 420px;
+    top: 265px;
+    font-size: 18px;
+  }
+`;
+export const VideoViews = styled.p`
+  &.rowViews {
+    position: absolute;
+    left: 375px;
+    top: 317px;
+    font-size: 15px;
+  }
+  &.columnViews {
+    position: absolute;
+    left: -150px;
+  }
+`;
+export const VideoPublishedAt = styled.p`
+  position: absolute;
+  left: 1105px;
+  top: 315px;
+  font-size: 15px;
+`;
+export const InnerDetails = styled.p`
+  &.row {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 1277px;
+    :hover {
+      background-color: gray;
+    }
+  }
+  &.column {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    :hover {
+      background-color: gray;
+    }
+  }
+`;

@@ -8,7 +8,7 @@ function VideoStream() {
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
   const { videoId } = useParams();
 
-  const { data, error } = useSWR(
+  const { data, loading } = useSWR(
     `https://youtube.thorsteinsson.is/api/videos/${videoId}`,
     fetcher
   );
@@ -16,15 +16,20 @@ function VideoStream() {
   const { setStatus } = useContext(AppContext);
 
   console.log(data);
+
+  // if (loading) {
+  //   return <p>Data is loading...</p>;
+  // }
   return (
     <div>
-      <VideoFrame src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}>
+      <VideoFrame src={`https://www.youtube.com/embed/${videoId}`}>
         {setStatus("active")}
       </VideoFrame>
-      <p>{data.datePublished}</p>
-      <p>{data.description}</p>
-      <p>{data.duration}</p>
-      <p>{}</p>
+      {/* {data.map((details) => (
+        <div key={details.videoId}>
+          <p>{details.title}</p>
+        </div>
+      ))} */}
     </div>
   );
 }
