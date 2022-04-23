@@ -10,12 +10,11 @@ function VideoPlayer({ children }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchText = searchParams.get("q");
 
-  const [status, setStatus] = useState();
-  const [count, setCount] = useState();
+  const [status, setStatus] = useState("none");
 
   return (
     <div>
-      <AppContext.Provider value={{ status, setStatus, count, setCount }}>
+      <AppContext.Provider value={{ status, setStatus }}>
         <FirstPage>
           <Form
             onSearch={(text) => {
