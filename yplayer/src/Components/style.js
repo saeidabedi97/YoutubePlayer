@@ -8,7 +8,9 @@ export const FirstPage = styled.div`
   top: 10px;
 `;
 
-export const SearchField = styled.input``;
+export const SearchField = styled.input`
+  color: ${(props) => (props.primary ? "blue" : "red")};
+`;
 export const SearchButton = styled.button``;
 export const SearchFieldContainer = styled.form`
   display: flex;

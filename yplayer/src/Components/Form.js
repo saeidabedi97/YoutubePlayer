@@ -1,5 +1,7 @@
 import { SearchField, SearchButton, SearchFieldContainer } from "./style";
 import { useForm } from "react-hook-form";
+import TextField from "./TextField";
+import Button from "./ButtonForSearch";
 
 function Form({ onSearch }) {
   const { register, handleSubmit } = useForm();
@@ -10,8 +12,8 @@ function Form({ onSearch }) {
 
   return (
     <SearchFieldContainer onSubmit={handleSubmit(onSubmit)}>
-      <SearchField type="text" {...register("text")} />
-      <SearchButton type="submit">Search</SearchButton>
+      <TextField {...register("text")} />
+      <Button>search</Button>
     </SearchFieldContainer>
   );
 }
